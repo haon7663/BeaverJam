@@ -10,7 +10,8 @@ public class ElementManager : MonoBehaviour
 
     public Element element;
 
-    public float elementalEnergy;
+    public int elementalCount;
+    public int elementalEnergy;
 
     void Awake() => Inst = this;
 
@@ -22,14 +23,22 @@ public class ElementManager : MonoBehaviour
         return true;
     }
 
-    public void ChargeEnergy(float value)
+    public void ChargeEnergy(int value)
     {
+        if (elementalCount >= 3) return;
+
         elementalEnergy += value;
-        if (elementalEnergy > 100) elementalEnergy = 100;
+        if (elementalEnergy >= 6)
+        {
+            elementalCount++;
+            var overCharger = elementalEnergy - 6;
+            elementalEnergy = overCharger;
+            if (elementalCount >= 3) elementalEnergy = 0;
+        }
     }
 
-    public void ZeroEnergy()
+    public void DecreaseEnergy()
     {
-        elementalEnergy = 0;
+        elementalCount--;
     }
 }

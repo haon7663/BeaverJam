@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Keypad4))
         {
-            ElementManager.Inst.ChargeEnergy(50);
+            ElementManager.Inst.ChargeEnergy(4);
         }
 
 #endif

@@ -3,23 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 { 
     public static UIManager Inst { get; private set; }
 
     [Header("Element Image")]
-    [SerializeField] private Image elementalGaugeFillImage;
-    [SerializeField] private Image elementStateImage;
+    [SerializeField] Image[] elementalGaugeFillImage;
+    [SerializeField] Image elementStateImage;
+    [SerializeField] TMP_Text elementCountText;
 
-    [SerializeField] private Sprite[] elementStateSprites;
+    [SerializeField] Sprite[] elementStateSprites;
     
 
     void Awake() => Inst = this;
 
     private void Update()
     {
-        elementalGaugeFillImage.fillAmount = ElementManager.Inst.elementalEnergy / 100f;
-        elementStateImage.sprite = elementStateSprites[(int)ElementManager.Inst.element];
+        //elementStateImage.sprite = elementStateSprites[Elemental.saveElement];
+
+        int count = ElementManager.Inst.elementalCount;
+
+        for (int i = 0; i < 6; i++)
+            elementalGaugeFillImage[i].enabled = i < ElementManager.Inst.elementalEnergy;
+        elementCountText.text = count == 0 ? "" : count.ToString();
+
     }
 }
