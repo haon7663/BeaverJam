@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    Rigidbody2D rigidbody2D;
-    CollisionHit collisionHit;
+    Rigidbody2D m_Rigidbody2D;
+    CollisionHit m_CollisionHit;
 
     [SerializeField] float speed;
     [SerializeField] float jumpPower;
 
     void Start()
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        collisionHit = GetComponent<CollisionHit>();
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_CollisionHit = GetComponent<CollisionHit>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && collisionHit.onGround)
+        if (Input.GetKeyDown(KeyCode.Space) && m_CollisionHit.onGround)
         {
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpPower);
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, jumpPower);
         }
     }
     void FixedUpdate()
@@ -31,6 +31,6 @@ public class Movement : MonoBehaviour
     void Move()
     {
         float x = Input.GetAxis("Horizontal");
-        rigidbody2D.velocity = new Vector2(x * speed * Time.deltaTime, rigidbody2D.velocity.y);
+        m_Rigidbody2D.velocity = new Vector2(x * speed * Time.deltaTime, m_Rigidbody2D.velocity.y);
     }
 }
