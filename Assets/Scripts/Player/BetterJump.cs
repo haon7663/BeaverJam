@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BetterJump : MonoBehaviour
 {
-    private Rigidbody2D RB;
+    private Rigidbody2D m_Rigidbody2D;
 
     [SerializeField] float fallMultiplier;
     [SerializeField] float lowJumpMultiplier;
@@ -12,18 +12,18 @@ public class BetterJump : MonoBehaviour
 
     private void Start()
     {
-        RB = GetComponent<Rigidbody2D>();
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        if (RB.velocity.y < 0)
+        if (m_Rigidbody2D.velocity.y < 0)
         {
-            RB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (RB.velocity.y > 0)
+        else if (m_Rigidbody2D.velocity.y > 0)
         {
-            RB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            m_Rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 }
