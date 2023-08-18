@@ -24,7 +24,21 @@ public class ElementalCollisionManager: MonoBehaviour
     {
         if(elementManager.element == Element.Ice )
         {
+            Physics2D.IgnoreLayerCollision(playerLayer, vaporObstacleLayer, true);
+            Physics2D.IgnoreLayerCollision(playerLayer, waterObstacleLayer, true);
             Physics2D.IgnoreLayerCollision(playerLayer, iceObstacleLayer, false);
+        }
+        else if (elementManager.element == Element.Water)
+        {
+            Physics2D.IgnoreLayerCollision(playerLayer, vaporObstacleLayer, true);
+            Physics2D.IgnoreLayerCollision(playerLayer, waterObstacleLayer, false);
+            Physics2D.IgnoreLayerCollision(playerLayer, iceObstacleLayer, true);
+        }
+        else if (elementManager.element == Element.Vapor)
+        {
+            Physics2D.IgnoreLayerCollision(playerLayer, vaporObstacleLayer, false);
+            Physics2D.IgnoreLayerCollision(playerLayer, waterObstacleLayer, true);
+            Physics2D.IgnoreLayerCollision(playerLayer, iceObstacleLayer, true);
         }
     }
 }
