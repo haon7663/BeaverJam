@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Elemental : MonoBehaviour
 {
-    [HideInInspector] public int saveElement;
+    public static int saveElement;
 
-    bool isChange;
+    public bool isChange;
 
     void Update()
     {
-        if (isChange || ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) && ElementManager.Inst.elementalEnergy >= 100))
+        if (isChange || ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) && ElementManager.Inst.elementalCount > 0))
         {
             isChange = true;
             saveElement += (Input.GetKeyDown(KeyCode.Q) ? -1 : Input.GetKeyDown(KeyCode.E) ? 1 : 0);
@@ -29,7 +29,7 @@ public class Elemental : MonoBehaviour
                     if (isReturn)
                     {
                         isChange = false;
-                        ElementManager.Inst.ZeroEnergy();
+                        ElementManager.Inst.DecreaseEnergy();
                     }
                 }
             }
