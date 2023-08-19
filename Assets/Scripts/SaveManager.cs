@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using LDtkUnity;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
@@ -14,12 +15,16 @@ public class SaveManager : MonoBehaviour
     private static SaveManager inst = null;
     private readonly string _key = "aes256=32CharA49AScdg5135=48Fk63";
 
+    public bool onStartedPosition = false;
+
     [Serializable]
     public class PlayerData
     {
         public float[] volume = { -20, -20, -20 };
         public bool playSoundToggle = false;
+
         public Vector3 SavePoint;
+
         //엘레맨탈포스 3 회복 하고 
         public int elemental = 1;
         public int elementalEnergy = 0;
@@ -38,25 +43,26 @@ public class SaveManager : MonoBehaviour
         }
 
         Load();
-      
-        
+        SceneManager.sceneLoaded += DefaultPlayerPos;
     }
-
-    private void Start()
+    
+    private void DefaultPlayerPos(Scene scene, LoadSceneMode arg1)
     {
-        print(saveData.SavePoint);
+        if(scene.name != "InGameScene")
+            return;
+        onStartedPosition = false;
+        print("ok");
         if (saveData.SavePoint == Vector3.zero)
         {
-            
+            print("ok2");
             var move = FindAnyObjectByType<Movement>();
             if (move)
             {
-                print(move.transform.localPosition);
-                var pos = /*GameObject.Find("Level_0").transform.position +*/ GameObject.Find("PlayerStart_3825af20-3b70-11ee-9dec-e59485d85d93").transform.position;
-                move.transform.position = /*new Vector3(pos.x,pos.y +1 ,pos.z);*/pos;
-                print(pos);
+                onStartedPosition = true;
+                print(GameObject.Find("PlayerStart_3825af20-3b70-11ee-9dec-e59485d85d93").gameObject);
+                move.transform.position = GameObject.Find("PlayerStart_3825af20-3b70-11ee-9dec-e59485d85d93").gameObject.transform.position;
+                print(move.transform.position);
             }
-               
         }
     }
 
@@ -103,7 +109,7 @@ public class SaveManager : MonoBehaviour
 
     public void Delete()
     {
-        File.Delete(Path.Combine(Application.persistentDataPath, "save.json"));
+        saveData = new PlayerData();
     }
 
     public void SavePlayerInfo(Vector3 position)
