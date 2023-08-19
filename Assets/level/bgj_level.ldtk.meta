@@ -22,24 +22,22 @@ ScriptedImporter:
   - _key: IntGrid_1
     _asset: {instanceID: 0}
   _entities:
-  - _key: Ladder
-    _asset: {instanceID: 0}
   - _key: Steel_cage_Horizontal
-    _asset: {instanceID: 0}
+    _asset: {fileID: 4899494462586908267, guid: 878438d7cc3a0f244b6f70b11acda1e9, type: 3}
   - _key: Steel_cage_Vertical
-    _asset: {instanceID: 0}
+    _asset: {fileID: 4287043987108916612, guid: db7475990a8ada84e9cd33cfd1a24a9f, type: 3}
   - _key: Vent_Right
     _asset: {instanceID: 0}
   - _key: Vent_Left
-    _asset: {instanceID: 0}
+    _asset: {fileID: 8196468998406469775, guid: de42e20072723fe4d8449841775e8ed0, type: 3}
   - _key: Fruit
-    _asset: {instanceID: 0}
+    _asset: {fileID: 6319153283632129469, guid: 6ca65aba8e98b5c4180a8c52a8608c61, type: 3}
   - _key: Fire
-    _asset: {instanceID: 0}
+    _asset: {fileID: 7548926008795388867, guid: 666e5379278541c4a960027fd08193f7, type: 3}
   - _key: Trap
-    _asset: {instanceID: 0}
+    _asset: {fileID: 6316123778721249575, guid: 95edd701bc6ce1544828ca998d01007b, type: 3}
   - _key: PlayerStart
-    _asset: {instanceID: 0}
+    _asset: {fileID: 1510571210032648137, guid: 608788be27dd1a941810031a8837e811, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
