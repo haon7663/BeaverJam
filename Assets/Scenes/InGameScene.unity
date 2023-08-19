@@ -914,7 +914,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150510090}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.479996, y: 13.809998, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3564,6 +3564,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8920121138682885852, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
+      propertyPath: m_ChunkCullingBounds.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8920121138682885852, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
+      propertyPath: m_ChunkCullingBounds.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: -7166580220482605586, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 1
@@ -5532,6 +5540,14 @@ PrefabInstance:
       propertyPath: m_ChunkCullingBounds.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3627403431330263125, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
+      propertyPath: m_ChunkCullingBounds.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3627403431330263125, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
+      propertyPath: m_ChunkCullingBounds.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3681320927017322957, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
       propertyPath: m_ColliderPaths.Array.size
       value: 1
@@ -6441,6 +6457,14 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4794919789097996463, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
+      propertyPath: m_ChunkCullingBounds.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990170283825092534, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
+      propertyPath: m_ChunkCullingBounds.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990170283825092534, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
       propertyPath: m_ChunkCullingBounds.y
       value: 0.5
       objectReference: {fileID: 0}
