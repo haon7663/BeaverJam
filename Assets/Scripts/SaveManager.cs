@@ -19,7 +19,6 @@ public class SaveManager : MonoBehaviour
     {
         public float[] volume = { -20, -20, -20 };
         public bool playSoundToggle = false;
-
         public Vector3 SavePoint;
         //엘레맨탈포스 3 회복 하고 
         public int elemental = 1;
@@ -39,13 +38,26 @@ public class SaveManager : MonoBehaviour
         }
 
         Load();
+      
         
-        var jsonData = File.ReadAllText(Path.Combine(Application.persistentDataPath, "save.json"));
-        // saveData 변수에 덮어씌운다
-        var Decrypt256 = AES256Encrypt.Decrypt256(jsonData, _key);
-        saveData = JsonUtility.FromJson<PlayerData>(Decrypt256);
-        
-        print(saveData.elemental);
+    }
+
+    private void Start()
+    {
+        print(saveData.SavePoint);
+        if (saveData.SavePoint == Vector3.zero)
+        {
+            
+            var move = FindAnyObjectByType<Movement>();
+            if (move)
+            {
+                print(move.transform.localPosition);
+                var pos = /*GameObject.Find("Level_0").transform.position +*/ GameObject.Find("PlayerStart_3825af20-3b70-11ee-9dec-e59485d85d93").transform.position;
+                move.transform.position = /*new Vector3(pos.x,pos.y +1 ,pos.z);*/pos;
+                print(pos);
+            }
+               
+        }
     }
 
     public static SaveManager Inst
