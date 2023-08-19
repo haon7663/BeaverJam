@@ -6,6 +6,7 @@ public class IceTrap : MonoBehaviour
 {
     private BoxCollider2D boxCollider2D;
     private SpriteRenderer spriteRenderer;
+    public GameObject particleBundle;
     private float curTime;
     private bool runingTime;
     // Start is called before the first frame update
@@ -24,11 +25,13 @@ public class IceTrap : MonoBehaviour
         {
             spriteRenderer.enabled = true;
             boxCollider2D.enabled = true;
+            particleBundle.SetActive(true);
             curTime -= Time.deltaTime;
             if(curTime < 0)
             {
                 spriteRenderer.enabled = false;
                 boxCollider2D.enabled = false;
+                particleBundle.SetActive(false);
                 runingTime = false;
                 curTime = 1.5f;
             }
@@ -40,6 +43,7 @@ public class IceTrap : MonoBehaviour
             {
                 spriteRenderer.enabled = true;
                 boxCollider2D.enabled = true;
+                particleBundle.SetActive(true);
                 runingTime = true;
                 curTime = 2f;
             }
@@ -49,14 +53,7 @@ public class IceTrap : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if(ElementManager.Inst.element == Element.Vapor)
-            {
-                ElementManager.Inst.element = Element.Water;
-            }
-            else if (ElementManager.Inst.element == Element.Water)
-            {
-                ElementManager.Inst.element = Element.Ice;
-            }
+            ElementManager.Inst.SetElement((int)ElementManager.Inst.element + 1);
         }
     }
 }
