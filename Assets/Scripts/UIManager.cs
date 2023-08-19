@@ -14,18 +14,24 @@ public class UIManager : MonoBehaviour
     [Header("Element Image")]
     [SerializeField] RectTransform[] elementalGauge;
     [SerializeField] RectTransform elementRect;
-    [SerializeField] TMP_Text elementCountText;
 
     [SerializeField] Sprite[] elementStateSprites;
-    
+
+    Vector2[] saveScale = new Vector2[3];
 
     void Awake() => Inst = this;
+
+    void Start()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            saveScale[i] = elementalGauge[i].sizeDelta;
+        }
+    }
 
     private void Update()
     {
         //elementStateImage.sprite = elementStateSprites[Elemental.saveElement];
-
-        int count = ElementManager.Inst.elementalCount;
         if (elemental.isChange)
         {
             SettingManager.Inst.SetTimeScale(0.1f);
@@ -41,44 +47,61 @@ public class UIManager : MonoBehaviour
                 else
                     elementalGauge[i].SetAsFirstSibling();
 
-
                 Vector3 localSave = new Vector3(mDistance * 100, 0);
-                elementalGauge[i].localPosition = Vector3.Lerp(elementalGauge[i].localPosition, localSave, Time.deltaTime * 75);
-                elementalGauge[i].sizeDelta = Vector3.Lerp(elementalGauge[i].sizeDelta, new Vector3(83.72f / (1 + (float)distance / 2), 206.4f / (1 + (float)distance / 2)), Time.deltaTime * 75);
 
-                for (int j = 0; j < 6; j++)
+                if (i != 2)
                 {
+                    elementalGauge[i].localPosition = Vector3.Lerp(elementalGauge[i].localPosition, localSave, Time.deltaTime * 75);
+                    elementalGauge[i].sizeDelta = Vector3.Lerp(elementalGauge[i].sizeDelta, new Vector3(saveScale[i].x / (1 + (float)distance / 2), saveScale[i].y / (1 + (float)distance / 2)), Time.deltaTime * 75);
+
                     color.a = distance == 0 ? 1 : distance == 1 ? 0.2f : 0f;
-                    var imageColor = elementalGauge[i].transform.GetChild(j).GetComponent<Image>().color;
+                    var imageColor = elementalGauge[i].transform.GetChild(0).GetComponent<Image>().color;
 
                     imageColor = Color.Lerp(imageColor, color, Time.deltaTime * 60);
 
-                    elementalGauge[i].transform.GetChild(j).GetComponent<Image>().color = imageColor;
-                    elementalGauge[i].transform.GetChild(j).GetChild(0).GetComponent<Image>().color = imageColor;
+                    elementalGauge[i].transform.GetChild(0).GetComponent<Image>().color = imageColor;
+                    elementalGauge[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().color = imageColor;
+                }
+                else if (i == 2)
+                {
+                    elementalGauge[i].localPosition = Vector3.Lerp(elementalGauge[i].localPosition, localSave, Time.deltaTime * 75);
+                    elementalGauge[i].sizeDelta = Vector3.Lerp(elementalGauge[i].sizeDelta, new Vector3(83.72f / (1 + (float)distance / 2), 206.4f / (1 + (float)distance / 2)), Time.deltaTime * 75);
+
+                    for (int j = 0; j < 6; j++)
+                    {
+                        color.a = distance == 0 ? 1 : distance == 1 ? 0.2f : 0f;
+                        var imageColor = elementalGauge[i].transform.GetChild(j).GetComponent<Image>().color;
+
+                        imageColor = Color.Lerp(imageColor, color, Time.deltaTime * 60);
+
+                        elementalGauge[i].transform.GetChild(j).GetComponent<Image>().color = imageColor;
+                        elementalGauge[i].transform.GetChild(j).GetChild(0).GetComponent<Image>().color = imageColor;
+                    }
                 }
             }
         }
         else
         {
             elementRect.localPosition = Vector3.Lerp(elementRect.localPosition, new Vector3(-730, 410), Time.deltaTime * 10);
-            for (int i = 0; i < 3; i++)
+
+            int i = Elemental.saveElement;
+            if (i != 2)
+            {
+                elementalGauge[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().fillAmount = Mathf.Lerp(elementalGauge[i].transform.GetChild(0).GetChild(0).GetComponent<Image>().fillAmount, 
+                                                                                                        (float)ElementManager.Inst.elementalEnergy / 6, Time.deltaTime * 10);
+            }
+            else if (i == 2)
             {
                 Color color = Color.white;
-                var elementCount = Elemental.saveElement;
-                var distance = elementCount == i ? 0 : elementCount > i ? elementCount - i : i - elementCount;
-
                 for (int j = 0; j < 6; j++)
                 {
-                    color.a = distance == 0 ? 1 : 0f;
-                    var imageColor = elementalGauge[i].transform.GetChild(j).GetComponent<Image>().color;
-
+                    color.a = ElementManager.Inst.elementalEnergy > j ? 1 : 0f;
+                    var imageColor = elementalGauge[2].transform.GetChild(j).GetChild(0).GetComponent<Image>().color;
                     imageColor = Color.Lerp(imageColor, color, Time.deltaTime * 60);
 
-                    elementalGauge[i].transform.GetChild(j).GetComponent<Image>().color = imageColor;
-                    elementalGauge[i].transform.GetChild(j).GetChild(0).GetComponent<Image>().color = imageColor;
+                    elementalGauge[2].transform.GetChild(j).GetChild(0).GetComponent<Image>().color = imageColor;
                 }
             }
         }
-        elementCountText.text = count == 0 ? "" : count.ToString();
     }
 }
