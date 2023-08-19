@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        
         SetAnimator();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         m_CollisionHit = GetComponent<CollisionHit>();
