@@ -10,7 +10,9 @@ public class SettingManager : MonoBehaviour
     public static SettingManager Inst { get; private set; }
 
     [SerializeField] private CinemachineVirtualCamera cinevirtual;
+    
     [SerializeField] private GameObject settingUI;
+    [SerializeField] private GameObject SoundSettingUI;
 
     private bool _isActive = false;
     public float setTimeScale = 1;
@@ -25,6 +27,7 @@ public class SettingManager : MonoBehaviour
     {
         cineSize = orthoSize;
         realCineSize = orthoSize;
+        SoundSettingUI.GetComponent<SoundController>().UIInitializing();
     }
 
     private void Update()
@@ -71,5 +74,15 @@ public class SettingManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void OnClickRestart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OnClickSoundSetting()
+    {
+        SoundSettingUI.SetActive(!SoundSettingUI.activeSelf);
     }
 }
