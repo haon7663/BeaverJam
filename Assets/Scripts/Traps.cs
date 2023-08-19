@@ -11,6 +11,7 @@ public class Traps : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        curTime = coolTime;
         runingTime = false;
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
@@ -38,17 +39,17 @@ public class Traps : MonoBehaviour
 
                 if (ElementManager.Inst.element == Element.Vapor)
                 {
-                    //ªÁ∏¡√≥∏Æ
+                    Death.Inst.CallDeath();
                 }
                 else if (ElementManager.Inst.element == Element.Water)
                 {
-                    ElementManager.Inst.element = Element.Vapor;
+                    ElementManager.Inst.SetElement(0);
                     boxCollider2D.enabled = false;
                     runingTime = true;
                 }
                 else if (ElementManager.Inst.element == Element.Ice)
                 {
-                    ElementManager.Inst.element = Element.Water;
+                    ElementManager.Inst.SetElement(1);
                     boxCollider2D.enabled = false;
                     runingTime = true;
                 }
@@ -56,6 +57,4 @@ public class Traps : MonoBehaviour
             }
         }
     }
-
-
 }
