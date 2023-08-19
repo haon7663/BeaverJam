@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ElementalCollisionManager: MonoBehaviour
 {
-
-    [SerializeField]
-    ElementManager elementManager;
     public enum ElementBlock {VaporBLock,WaterBLock,IceBLock }
     public ElementBlock elementBlcok;
     private int playerLayer,vaporObstacleLayer, waterObstacleLayer,iceObstacleLayer;
@@ -22,19 +19,19 @@ public class ElementalCollisionManager: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(elementManager.element == Element.Ice )
+        if (ElementManager.Inst.element == Element.Ice )
         {
             Physics2D.IgnoreLayerCollision(playerLayer, vaporObstacleLayer, true);
             Physics2D.IgnoreLayerCollision(playerLayer, waterObstacleLayer, true);
             Physics2D.IgnoreLayerCollision(playerLayer, iceObstacleLayer, false);
         }
-        else if (elementManager.element == Element.Water)
+        else if (ElementManager.Inst.element == Element.Water)
         {
             Physics2D.IgnoreLayerCollision(playerLayer, vaporObstacleLayer, true);
             Physics2D.IgnoreLayerCollision(playerLayer, waterObstacleLayer, false);
             Physics2D.IgnoreLayerCollision(playerLayer, iceObstacleLayer, true);
         }
-        else if (elementManager.element == Element.Vapor)
+        else if (ElementManager.Inst.element == Element.Vapor)
         {
             Physics2D.IgnoreLayerCollision(playerLayer, vaporObstacleLayer, false);
             Physics2D.IgnoreLayerCollision(playerLayer, waterObstacleLayer, true);
