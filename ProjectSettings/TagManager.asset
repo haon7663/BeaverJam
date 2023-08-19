@@ -15,9 +15,9 @@ TagManager:
   - VaporObstacle
   - WaterObstacle
   - IceObstacle
-  - Player
-  - 
-  - 
+  - Vapor
+  - Water
+  - Ice
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2877969393
+    locked: 0
+  - name: Particle
+    uniqueID: 2750956359
     locked: 0
