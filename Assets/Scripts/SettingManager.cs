@@ -65,7 +65,7 @@ public class SettingManager : MonoBehaviour
 
     public void OnClickExit()
     {
-        
+        SoundSettingUI.SetActive(false); 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -75,6 +75,7 @@ public class SettingManager : MonoBehaviour
 
     public void OnClickRestart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
