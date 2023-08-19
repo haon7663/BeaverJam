@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using LDtkUnity;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
@@ -30,7 +31,6 @@ public class SaveManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
         Load();
     }
     
@@ -45,13 +45,14 @@ public class SaveManager : MonoBehaviour
             return inst;
         }
     }
-
     public void Save()
     {
         // saveData 변수를 json 형식으로 변환한다
         var jsonData = JsonUtility.ToJson(saveData, true);
         // jsonData를 save.json에 저장한다
-        File.WriteAllText(Path.Combine(Application.persistentDataPath, "save.json"), jsonData);
+        
+        var Encrypt =AES256Encrypt.Encrypt256(jsonData, "aes256=32CharA49AScdg5135=48Fk63");
+        File.WriteAllText(Path.Combine(Application.persistentDataPath, "save.json"), Encrypt);
     }
 
     public void Load()
@@ -69,11 +70,13 @@ public class SaveManager : MonoBehaviour
         // 파일이 존재하면 save.json을 불러온다
         var jsonData = File.ReadAllText(Path.Combine(Application.persistentDataPath, "save.json"));
         // saveData 변수에 덮어씌운다
-        saveData = JsonUtility.FromJson<PlayerData>(jsonData);
+        var Decrypt256 = AES256Encrypt.Decrypt256(jsonData, "aes256=32CharA49AScdg5135=48Fk63");
+        saveData = JsonUtility.FromJson<PlayerData>(Decrypt256);
     }
 
     public void Delete()
     {
         File.Delete(Path.Combine(Application.persistentDataPath, "save.json"));
+        
     }
 }
