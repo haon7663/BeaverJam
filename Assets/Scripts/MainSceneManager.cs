@@ -7,6 +7,6 @@ public class MainSceneManager : MonoBehaviour
 {
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("Scenes/SampleScene");
+        SceneManager.LoadScene("Scenes/InGameScene");
     }
 }
