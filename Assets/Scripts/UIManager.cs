@@ -15,8 +15,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] RectTransform[] elementalGauge;
     [SerializeField] RectTransform elementRect;
 
-    [SerializeField] Sprite[] elementStateSprites;
-
     Vector2[] saveScale = new Vector2[3];
 
     void Awake() => Inst = this;
@@ -31,7 +29,6 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        //elementStateImage.sprite = elementStateSprites[Elemental.saveElement];
         if (elemental.isChange)
         {
             SettingManager.Inst.SetTimeScale(0.1f);
