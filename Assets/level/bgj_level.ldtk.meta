@@ -9,7 +9,7 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
   _reimportOnDependencyChange: 1
-  _jsonFile: {instanceID: 0}
+  _jsonFile: {fileID: -164016180542632921, guid: affd8f522e96f374bb7aa4324b76bac8, type: 3}
   _pixelsPerUnit: 16
   _atlas: {instanceID: 0}
   _customLevelPrefab: {instanceID: 0}
@@ -18,8 +18,28 @@ ScriptedImporter:
   _useCompositeCollider: 1
   _createBackgroundColor: 1
   _createLevelBoundsTrigger: 0
-  _intGridValues: []
-  _entities: []
+  _intGridValues:
+  - _key: IntGrid_1
+    _asset: {instanceID: 0}
+  _entities:
+  - _key: Ladder
+    _asset: {instanceID: 0}
+  - _key: Steel_cage_Horizontal
+    _asset: {instanceID: 0}
+  - _key: Steel_cage_Vertical
+    _asset: {instanceID: 0}
+  - _key: Vent_Right
+    _asset: {instanceID: 0}
+  - _key: Vent_Left
+    _asset: {instanceID: 0}
+  - _key: Fruit
+    _asset: {instanceID: 0}
+  - _key: Fire
+    _asset: {instanceID: 0}
+  - _key: Trap
+    _asset: {instanceID: 0}
+  - _key: PlayerStart
+    _asset: {instanceID: 0}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 
