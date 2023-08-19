@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Traps : MonoBehaviour
 {
-    public enum TrapType { fire, ice }
-    public TrapType trapType;
     private BoxCollider2D boxCollider2D;
     public float coolTime;
     private float curTime;
@@ -14,7 +12,7 @@ public class Traps : MonoBehaviour
     void Start()
     {
         runingTime = false;
-        boxCollider2D = GetComponent<BoxCollider2D>();  
+        boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -37,49 +35,24 @@ public class Traps : MonoBehaviour
         {
             if (!runingTime)
             {
-                if (trapType == TrapType.fire)
+
+                if (ElementManager.Inst.element == Element.Vapor)
                 {
-                    if (ElementManager.Inst.element == Element.Vapor)
-                    {
-                        //사망처리
-                    }
-                    else if (ElementManager.Inst.element == Element.Water)
-                    {
-                        //대미지 처리
-                        ElementManager.Inst.element = Element.Vapor;
-                        boxCollider2D.enabled = false;
-                        runingTime = true;
-                    }
-                    else if (ElementManager.Inst.element == Element.Ice)
-                    {
-                        //대미지 처리
-                        ElementManager.Inst.element = Element.Water;
-                        boxCollider2D.enabled = false;
-                        runingTime = true;
-                    }
+                    //사망처리
                 }
-                else if (trapType == TrapType.ice)
+                else if (ElementManager.Inst.element == Element.Water)
                 {
-                    if (ElementManager.Inst.element == Element.Vapor)
-                    {
-                        ElementManager.Inst.element = Element.Water;
-                        boxCollider2D.enabled = false;
-                        runingTime = true;
-                    }
-                    else if (ElementManager.Inst.element == Element.Water)
-                    {
-                        //대미지 처리
-                        ElementManager.Inst.element = Element.Ice;
-                        boxCollider2D.enabled = false;
-                        runingTime = true;
-                    }
-                    else if (ElementManager.Inst.element == Element.Ice)
-                    {
-                        //대미지 처리
-                        boxCollider2D.enabled = false;
-                        runingTime = true;
-                    }
+                    ElementManager.Inst.element = Element.Vapor;
+                    boxCollider2D.enabled = false;
+                    runingTime = true;
                 }
+                else if (ElementManager.Inst.element == Element.Ice)
+                {
+                    ElementManager.Inst.element = Element.Water;
+                    boxCollider2D.enabled = false;
+                    runingTime = true;
+                }
+
             }
         }
     }
