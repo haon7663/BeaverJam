@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] RectTransform[] elementalGauge;
     [SerializeField] RectTransform elementRect;
 
+    List<int> elements = new List<int>();
+
     Vector2[] saveScale = new Vector2[3];
 
     void Awake() => Inst = this;
@@ -23,12 +25,19 @@ public class UIManager : MonoBehaviour
     {
         for(int i = 0; i < 3; i++)
         {
+            elements.Add((int)ElementManager.Inst.element);
             saveScale[i] = elementalGauge[i].sizeDelta;
         }
     }
 
+    public void ChangeElement()
+    {
+
+    }
+
     private void Update()
     {
+        /*
         if (elemental.isChange)
         {
             SettingManager.Inst.SetTimeScale(0.1f);
@@ -99,6 +108,6 @@ public class UIManager : MonoBehaviour
                     elementalGauge[2].transform.GetChild(j).GetChild(0).GetComponent<Image>().color = imageColor;
                 }
             }
-        }
+        }*/
     }
 }
