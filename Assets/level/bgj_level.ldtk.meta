@@ -25,9 +25,9 @@ ScriptedImporter:
   - _key: Ladder
     _asset: {instanceID: 0}
   - _key: Steel_cage_Horizontal
-    _asset: {instanceID: 0}
+    _asset: {fileID: 4899494462586908267, guid: 878438d7cc3a0f244b6f70b11acda1e9, type: 3}
   - _key: Steel_cage_Vertical
-    _asset: {instanceID: 0}
+    _asset: {fileID: 4899494462586908267, guid: 878438d7cc3a0f244b6f70b11acda1e9, type: 3}
   - _key: Vent_Right
     _asset: {instanceID: 0}
   - _key: Vent_Left
