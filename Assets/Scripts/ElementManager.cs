@@ -8,9 +8,9 @@ public class ElementManager : MonoBehaviour
 {
     public static ElementManager Inst { get; private set; }
 
+    [SerializeField] GameObject player;
     public Element element;
 
-    public int elementalCount;
     public int elementalEnergy;
 
     void Awake() => Inst = this;
@@ -20,25 +20,22 @@ public class ElementManager : MonoBehaviour
         if (elementCount < 0 || elementCount > 2)
             return false;
         element = (Element)elementCount;
+
+        player.GetComponent<Movement>().SetAnimator();
+        player.layer = 10 + elementCount;
         return true;
     }
 
     public void ChargeEnergy(int value)
     {
-        if (elementalCount >= 3) return;
+        if (elementalEnergy >= 6)
+            return;
 
         elementalEnergy += value;
-        if (elementalEnergy >= 6)
-        {
-            elementalCount++;
-            var overCharger = elementalEnergy - 6;
-            elementalEnergy = overCharger;
-            if (elementalCount >= 3) elementalEnergy = 0;
-        }
     }
 
     public void DecreaseEnergy()
     {
-        elementalCount--;
+        elementalEnergy = 0;
     }
 }

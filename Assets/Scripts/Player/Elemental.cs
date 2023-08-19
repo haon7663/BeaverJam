@@ -9,10 +9,15 @@ public class Elemental : MonoBehaviour
     public bool isChange;
     bool isWUp = true;
     [SerializeField] Fade fade;
+    public GameObject[] ElemetalBody;
 
     void Update()
     {
-        if (isChange || ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.W)) && ElementManager.Inst.elementalCount > 0))
+        for(int i = 0; i < 3; i++)
+        {
+            ElemetalBody[i].SetActive(i == (int)ElementManager.Inst.element);
+        }
+        if (isChange || ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.W)) && ElementManager.Inst.elementalEnergy >= 6))
         {
             if (!isChange)
             {
