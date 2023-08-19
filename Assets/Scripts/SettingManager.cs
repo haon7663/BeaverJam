@@ -56,9 +56,6 @@ public class SettingManager : MonoBehaviour
             cineSize = Time.timeScale == 1 ? orthoSize : orthoSize*0.8f;
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
         }
-
-        Debug.Log("Timescale" + Time.timeScale);
-        Debug.Log("FixedDelta" + Time.fixedDeltaTime);
     }
 
     public void OnClickMain()
