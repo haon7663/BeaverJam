@@ -20,9 +20,11 @@ public class ElementManager : MonoBehaviour
         if (elementCount < 0 || elementCount > 2)
             return false;
         element = (Element)elementCount;
+        Elemental.saveElement = elementCount;
 
         player.GetComponent<Movement>().SetAnimator();
         player.layer = 10 + elementCount;
+        UIManager.Inst.ChangeElement();
         return true;
     }
 
@@ -32,10 +34,12 @@ public class ElementManager : MonoBehaviour
             return;
 
         elementalEnergy += value;
+        UIManager.Inst.ChangeElement();
     }
 
     public void DecreaseEnergy()
     {
         elementalEnergy = 0;
+        UIManager.Inst.ChangeElement();
     }
 }
