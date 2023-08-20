@@ -110,6 +110,7 @@ public class SaveManager : MonoBehaviour
     {
         saveData.SavePoint = position;
         ElementManager.Inst.ChargeEnergy(3);
+        UIManager.Inst.ChangeElement();
         saveData.elementalEnergy = ElementManager.Inst.elementalEnergy;
         saveData.elemental = (int)ElementManager.Inst.element;
     }

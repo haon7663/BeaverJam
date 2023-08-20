@@ -60,6 +60,7 @@ public class SettingManager : MonoBehaviour
 
     public void OnClickMain()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Scenes/MainScene");
     }
 
@@ -75,6 +76,7 @@ public class SettingManager : MonoBehaviour
 
     public void OnClickRestart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

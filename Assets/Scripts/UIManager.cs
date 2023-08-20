@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeElement()
     {
+        elementRect.DOLocalMove(new Vector3(elemental.isChange ? -610 : -710, 400), 0.1f);
         for (int i = 0; i < 3; i++)
         {
             Color color = Color.white;

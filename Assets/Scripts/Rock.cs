@@ -1,25 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Rock : MonoBehaviour
 {
-    // Start is called before the first frame update
+    AudioSource audios;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        audios = GetComponent<AudioSource>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")|| collision.gameObject.tag == "Player")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 0.7f);
+        }
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Death.Inst.CallDeath();
+            audios.Play();
+            Destroy(this.gameObject, 0.7f);
         }
     }
 }
