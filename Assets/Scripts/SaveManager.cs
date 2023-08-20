@@ -12,6 +12,7 @@ public class SaveManager : MonoBehaviour
 {
     public PlayerData saveData;
     private static SaveManager inst = null;
+    public bool onStartedPosition = false;
     private readonly string _key = "aes256=32CharA49AScdg5135=48Fk63";
 
     [Serializable]
@@ -39,26 +40,9 @@ public class SaveManager : MonoBehaviour
 
         Load();
       
-        
+        SceneManager.sceneLoaded += DefaultPlayerPos;
     }
-
-    private void Start()
-    {
-        print(saveData.SavePoint);
-        if (saveData.SavePoint == Vector3.zero)
-        {
-            
-            var move = FindAnyObjectByType<Movement>();
-            if (move)
-            {
-                print(move.transform.localPosition);
-                var pos = /*GameObject.Find("Level_0").transform.position +*/ GameObject.Find("PlayerStart_3825af20-3b70-11ee-9dec-e59485d85d93").transform.position;
-                move.transform.position = /*new Vector3(pos.x,pos.y +1 ,pos.z);*/pos;
-                print(pos);
-            }
-               
-        }
-    }
+    
 
     public static SaveManager Inst
     {
@@ -101,9 +85,36 @@ public class SaveManager : MonoBehaviour
         saveData = JsonUtility.FromJson<PlayerData>(Decrypt256);
     }
 
+    
+    private void DefaultPlayerPos(Scene scene, LoadSceneMode arg1)
+    {
+        print(saveData.SavePoint);
+        if(scene.name != "InGameScene")
+            return;
+        onStartedPosition = false;
+        print("ok");
+        if (saveData.SavePoint == Vector3.zero)
+        {
+            
+            print("ok2");
+            var move = FindAnyObjectByType<Movement>();
+            if (move)
+            {
+                print(move.transform.localPosition);
+                var pos = /*GameObject.Find("Level_0").transform.position +*/ GameObject.Find("PlayerStart_3825af20-3b70-11ee-9dec-e59485d85d93").transform.position;
+                move.transform.position = /*new Vector3(pos.x,pos.y +1 ,pos.z);*/pos;
+                print(pos);
+                onStartedPosition = true;
+                print(GameObject.Find("PlayerStart_3825af20-3b70-11ee-9dec-e59485d85d93").gameObject);
+                move.transform.position = GameObject.Find("PlayerStart_3825af20-3b70-11ee-9dec-e59485d85d93").gameObject.transform.position;
+                print(move.transform.position);
+            }
+               
+        }
+    }
     public void Delete()
     {
-        File.Delete(Path.Combine(Application.persistentDataPath, "save.json"));
+        saveData = new PlayerData();
     }
 
     public void SavePlayerInfo(Vector3 position)
