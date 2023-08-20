@@ -31,6 +31,7 @@ public class Elemental : MonoBehaviour
                 saveElement += (Input.GetKeyDown(KeyCode.Q) ? -1 : Input.GetKeyDown(KeyCode.E) ? 1 : 0);
                 if (saveElement > 2) saveElement = 0;
                 else if (saveElement < 0) saveElement = 2;
+                if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) UIManager.Inst.ChangeElement();
 
                 if (Input.GetKeyUp(KeyCode.W))
                     isWUp = true;
@@ -43,6 +44,7 @@ public class Elemental : MonoBehaviour
                     SettingManager.Inst.SetTimeScale(1f);
                     fade.FadeOut();
                     isChange = false;
+                    UIManager.Inst.ChangeElement();
                 }
                 else
                 {
@@ -52,6 +54,7 @@ public class Elemental : MonoBehaviour
                         SettingManager.Inst.SetTimeScale(1f);
                         fade.FadeOut();
                         isChange = false;
+                        UIManager.Inst.ChangeElement();
 
                         ElementManager.Inst.DecreaseEnergy();
                     }
