@@ -61,7 +61,7 @@ public class SettingManager : MonoBehaviour
     public void OnClickMain()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("Scenes/MainScene");
+        SceneManager.LoadScene(0);
     }
 
     public void OnClickExit()

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Scenes/MainScene.unity
+    path: Assets/Scenes/Scenes/MainScene - Copy - Copy.unity
     guid: e6458a8899760fa47ae4d6138ec171d0
   - enabled: 1
     path: Assets/Scenes/InGameScene.unity

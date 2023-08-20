@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         m_CollisionHit = GetComponent<CollisionHit>();
         if(!SaveManager.Inst.onStartedPosition) SaveManager.Inst.InitPlayerInfo();
+        SetAnimator();
     }
 
     public void SetAnimator()
